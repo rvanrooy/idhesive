@@ -1,0 +1,54 @@
+{
+    "caseSensitive": false,
+    "properties": {
+        "name": "main",
+        "environment": {
+            "type": "noflo-nodejs"
+        }
+    },
+    "inports": {},
+    "outports": {},
+    "groups": [],
+    "processes": {
+        "core/Kick_k6s4q": {
+            "component": "core/Kick",
+            "metadata": {
+                "label": "Kick",
+                "x": 334,
+                "y": 100,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/Output_usxzj": {
+            "component": "core/Output",
+            "metadata": {
+                "label": "Output",
+                "x": 612,
+                "y": 144,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "core/Kick_k6s4q",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/Output_usxzj",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "data": "hello",
+            "tgt": {
+                "process": "core/Kick_k6s4q",
+                "port": "data"
+            }
+        }
+    ]
+}
