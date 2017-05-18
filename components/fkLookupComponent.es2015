@@ -1,0 +1,41 @@
+import noflo from 'noflo';
+
+export var getComponent = function() {
+  var c = new noflo.Component();
+  c.description = 'Looks up the foreign key given a table and query field';
+  c.icon = 'key';
+  c.inPorts.add('in', {
+    datatype: 'all',
+    description: 'Packet to forward'
+  });
+  c.inPorts.add('table', {
+    datatype: 'all',
+    description: 'parent table'
+  });
+  c.inPorts.add('query_field', {
+    datatype: 'all',
+    description: 'field to query'
+  });
+    c.inPorts.add('res_field', {
+    datatype: 'all',
+    description: 'field to return'
+  });
+  c.outPorts.add('out', {
+    datatype: 'all'
+  });
+  c.process(function (input, output) {
+    // Check preconditions on input data
+    if (!input.hasData('in')) {
+      return;
+    }
+    // Read packets we need to process
+    var data = input.getData('in');
+    // Process data and send output
+    output.send({
+      out: data
+    });
+    // Deactivate
+    output.done();
+  });
+  return c;
+};

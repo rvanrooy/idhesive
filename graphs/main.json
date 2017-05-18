@@ -80,8 +80,7 @@
             "tgt": {
                 "process": "Postgres",
                 "port": "in"
-            },
-            "metadata": {}
+            }
         },
         {
             "data": "tcp://ptm:ptm@localhost:5432/ptm",
