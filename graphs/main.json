@@ -10,42 +10,22 @@
     "outports": {},
     "groups": [],
     "processes": {
-        "Postgres": {
-            "component": "pg/Postgres",
+        "Test": {
+            "component": "idhesive/IdhesivePostgres",
             "metadata": {
-                "x": 108,
-                "y": 144,
-                "width": 72,
-                "height": 72,
-                "label": "Postgres"
-            }
-        },
-        "PrintUsers": {
-            "component": "Output",
-            "metadata": {
-                "x": 288,
+                "x": -36,
                 "y": 36,
                 "width": 72,
                 "height": 72,
-                "label": "PrintUsers"
+                "label": "Test"
             }
         },
-        "Error": {
-            "component": "Output",
+        "core/Output_61j91": {
+            "component": "core/Output",
             "metadata": {
-                "x": 288,
-                "y": 180,
-                "width": 72,
-                "height": 72,
-                "label": "Error"
-            }
-        },
-        "groups/Group_sau6i": {
-            "component": "groups/Group",
-            "metadata": {
-                "label": "Group",
-                "x": -72,
-                "y": 108,
+                "label": "Output",
+                "x": 144,
+                "y": 36,
                 "width": 72,
                 "height": 72
             }
@@ -54,67 +34,20 @@
     "connections": [
         {
             "src": {
-                "process": "Postgres",
-                "port": "out"
+                "process": "Test",
+                "port": "result"
             },
             "tgt": {
-                "process": "PrintUsers",
+                "process": "core/Output_61j91",
                 "port": "in"
-            }
-        },
-        {
-            "src": {
-                "process": "Postgres",
-                "port": "error"
             },
-            "tgt": {
-                "process": "Error",
-                "port": "in"
-            }
+            "metadata": {}
         },
         {
-            "src": {
-                "process": "groups/Group_sau6i",
-                "port": "out"
-            },
+            "data": "Redefine",
             "tgt": {
-                "process": "Postgres",
-                "port": "in"
-            }
-        },
-        {
-            "data": "tcp://ptm:ptm@localhost:5432/ptm",
-            "tgt": {
-                "process": "Postgres",
-                "port": "server"
-            }
-        },
-        {
-            "data": "SELECT * FROM ptm.landlord WHERE name = &name",
-            "tgt": {
-                "process": "Postgres",
-                "port": "template"
-            }
-        },
-        {
-            "data": "id",
-            "tgt": {
-                "process": "Postgres",
-                "port": "token"
-            }
-        },
-        {
-            "data": "name",
-            "tgt": {
-                "process": "groups/Group_sau6i",
-                "port": "group"
-            }
-        },
-        {
-            "data": "Liberty",
-            "tgt": {
-                "process": "groups/Group_sau6i",
-                "port": "in"
+                "process": "Test",
+                "port": "query_field"
             }
         }
     ]
